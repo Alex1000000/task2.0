@@ -96,7 +96,9 @@ public class SimpleController {
 
         model.put("expr", expr);
 
-        return "music_info_from_api";
+        return "redirect: http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+expr+"&api_key=6560bd474266c81a2bc8148d00676f8a";
+        //return "redirect: http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=6560bd474266c81a2bc8148d00676f8a&artist=cher&track=believe&format=xml";
+        //return "music_info_from_api";
     }
 
 
