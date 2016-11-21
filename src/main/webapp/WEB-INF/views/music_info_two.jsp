@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
@@ -5,28 +6,14 @@
 </head>
 <body>
 
-<h2>Student Information</h2>
-<form:form method="POST" action="/postMusicInfoFromApi">
-    <table>
-        <tr>
-            <td><form:label path="name">Name</form:label></td>
-            <td><form:input path="name" /></td>
-        </tr>
-        <tr>
-            <td><form:label path="age">Age</form:label></td>
-            <td><form:input path="age" /></td>
-        </tr>
-        <tr>
-            <td><form:label path="id">id</form:label></td>
-            <td><form:input path="id" /></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Submit"/>
-            </td>
-        </tr>
-    </table>
-</form:form>
+<h2>Music Information</h2>
+
+<h4>The expression is: <c:out value="${expr}"/></h4>
+<form action="${pageContext.request.contextPath}/postMusicInfoFromApi" method="post">
+    <label for="name"><b>Enter Track Name:</b></label>
+    <input name="expr" id="name" type="text">
+    <%--<input name="expr" type="submit" value="requestmethod (post)">--%>
+</form>
 </body>
 </html>
 

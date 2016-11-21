@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import de.umass.lastfm;
+
 
 import java.util.Map;
 
@@ -74,9 +74,29 @@ public class SimpleController {
         } catch (Exception e) {
             e.printStackTrace();
             model.put("invalid", expr.toString() + " Incorrect expression format!");
-            return "music_info";
+            return "env_all";
         }
-        return "music_info";
+        return "music_info_one";
+    }
+
+
+
+    @RequestMapping(value = {"/getMusicInfoFromApi"}, method = RequestMethod.GET)
+    public String ModelAndView(@RequestParam(value = "expr", required = false) String expr, Map<String, Object> model) {
+
+        if (expr == null|| expr.isEmpty()) {
+            return "music_info_two";
+        }
+        return "music_info_two";
+    }
+
+    @RequestMapping(value = {"/postMusicInfoFromApi"}, method = RequestMethod.POST)
+           // , produces={"application/json","application/xml"}, consumes="text/html")
+    public String postToMusicApi(@RequestParam(value = "expr", required = false) String expr, Map<String, Object> model) {
+
+        model.put("expr", expr);
+
+        return "music_info_from_api";
     }
 
 

@@ -3,34 +3,36 @@
 <html>
 
 <head>
-    <title>Facts</title>
+    <title>Post Or Get</title>
     <style>
         fieldset {
-            background: #c0ff9c;
-            color: #1c1385;
-            border: 15px ridge #9b146c;
-            width: 50%;
+            background: #cceded;
+            color: #4f6aff;
+            border: 5px ridge #cddbd8;
+            width: 30%;
             font-family: sans-serif;
-            font-size: 120%;
+            font-size: 100%;
             position: absolute;
-            top: 12.5%;
-        //bottom: 25%;
-            left: 22.5%;
-        //right: 2%;
+            top: 5%;
+            /*bottom: 20%;*/
+            /*left: 20%;*/
+            /*right: 20%;*/
         }
     </style>
 </head>
 
-<body style="background-color: rgba(205,255,192,0.92)">
-<%--<fieldset>--%>
-    <p align="center"> <font size="7" color="#9b146c" face="Arial"><b>Facts!</b></font> </p>
-    <form action="${pageContext.request.contextPath}/getMusicInfo/">
+<body >
+<fieldset>
+    <p align="center">
+    <h1>Enter Something</h1>
+    </p>
+    <form action="${pageContext.request.contextPath}/postMusicInfoFromApi" method="post">
         <label for="name">Please, enter song name: </label>
         <input name="expr" id="name" type="text">
     </form>
     <h4>The expression is: <c:out value="${expr}"/></h4>
 
-<%--</fieldset>--%>
+</fieldset>
 </body>
 
 </html>
