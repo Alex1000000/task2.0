@@ -9,7 +9,7 @@
 <h2>Music Information</h2>
 
 <h4>The expression is: <c:out value="${expr}"/></h4>
-<form action="${pageContext.request.contextPath}/postMusicInfoFromApi" method="post">
+<form action="${pageContext.request.contextPath}/postSearchMusicInfoFromApi" method="post">
     <label for="name"><b>Enter Track Name:</b></label>
     <input name="expr" id="name" type="text">
     <%--<input name="expr" type="submit" value="requestmethod (post)">--%>

@@ -26,8 +26,8 @@
     <p align="center">
     <h1>Enter Something</h1>
     </p>
-    <form action="${pageContext.request.contextPath}/postMusicInfoFromApi" method="post">
-        <label for="name">Please, enter song name: </label>
+    <form action="${pageContext.request.contextPath}/postSearchMusicInfoFromApi" method="post" onsubmit="return check()">
+        <label for="name">Please, enter Artist name: </label>
         <input name="expr" id="name" type="text">
     </form>
     <h4>The expression is: <c:out value="${expr}"/></h4>

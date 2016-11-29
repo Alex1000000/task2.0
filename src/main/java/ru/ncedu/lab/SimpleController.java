@@ -1,10 +1,14 @@
 package ru.ncedu.lab;
 
+import javafx.application.Application;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+import org.slf4j.LoggerFactory;
 
 
 import java.util.Map;
@@ -15,7 +19,7 @@ import java.util.Map;
 
 @Controller
 public class SimpleController {
-
+//    private static final Logger log = LoggerFactory.getLogger(Application.class);
     @RequestMapping("/env")
     public String getAllEnvVariables(Map<String, Object> model){
         model.put("env", System.getenv());
@@ -96,9 +100,25 @@ public class SimpleController {
 
         model.put("expr", expr);
 
-        return "redirect: http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+expr+"&api_key=6560bd474266c81a2bc8148d00676f8a";
+        return "redirect: http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+"Patrick"+"&api_key=6560bd474266c81a2bc8148d00676f8a";
         //return "redirect: http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=6560bd474266c81a2bc8148d00676f8a&artist=cher&track=believe&format=xml";
         //return "music_info_from_api";
+    }
+
+    @RequestMapping(value = "/postSearchMusicInfoFromApi", method = RequestMethod.POST)
+    public String postSearchToMusicApi(@RequestParam(value = "expr", required = false) String expr, Map<String, Object> model) {
+//        System.setProperty("http.proxyPort", "8080");
+//        System.clearProperty("http.proxyHost");
+//        System.setProperty("http.proxyHost", "http://ws.audioscrobbler.com");
+        RestTemplate restTemplate = new RestTemplate();
+
+        Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
+       // Quote quote = restTemplate.getForObject("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+expr+"&api_key=6560bd474266c81a2bc8148d00676f8a&format=json", Quote.class);
+//        log.info(quote.toString());
+        model.put("expr", quote.toString());
+        //return "redirect: http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist="+expr+"&api_key=6560bd474266c81a2bc8148d00676f8a";
+        //return "redirect: http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=6560bd474266c81a2bc8148d00676f8a&artist=cher&track=believe&format=xml";
+        return "music_info_from_api";
     }
 
 
